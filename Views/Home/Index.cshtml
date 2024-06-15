@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Entities.StudentSummary>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th colspan="@ViewBag.MaxCourseResults" >
+                Courses and Grades
+            </th>
+            <th>
+                Has Passed
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td >
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+
+                @if(item.CourseResult?.Count > 0)
+                {
+                    @foreach (var correlatedResult in item.CourseResult)
+                    {
+                        <td>
+                            @correlatedResult.CourseName - 
+                            @correlatedResult.Grade
+                        </td>
+                    }
+                    @for( int i=0; i <= item.bufferRows; i++)
+                    {
+                        <td></td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPassing)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

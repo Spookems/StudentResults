@@ -1,0 +1,14 @@
+I think this is what you are looking for:
+
+SELECT UPPER(regionName) AS Region
+FROM [dbo].[Regions];
+
+SELECT U.[userId], U.[userName], R.[regionName]
+FROM [dbo].[Users] U
+JOIN [dbo].[Regions] R ON U.[userId] = R.[userId]
+WHERE R.[regionName] = 'NorthEast';
+
+SELECT U.[userId], U.[userName], R.[regionName]
+FROM [dbo].[Users] U
+JOIN [dbo].[Regions] R ON U.[userId] = R.[userId]
+WHERE U.[createdDate] >= '2024-04-01';
